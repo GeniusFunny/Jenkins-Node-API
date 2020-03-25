@@ -1,0 +1,26 @@
+{
+  "name": "jenkins-node-api",
+  "version": "0.1.0",
+  "description": "jenkins",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GeniusFunny/Jenkins-Node-API.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GeniusFunny/Jenkins-Node-API/issues"
+  },
+  "homepage": "https://github.com/GeniusFunny/Jenkins-Node-API#readme",
+  "dependencies": {
+    "request": "^2.88.2"
+  }
+}

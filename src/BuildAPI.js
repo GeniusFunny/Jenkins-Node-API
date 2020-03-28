@@ -37,7 +37,5 @@ class BuildAPI {
   }
 }
 
-module.exports = {
-  BuildAPI
-}
+module.exports = BuildAPI
 

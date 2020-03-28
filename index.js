@@ -1,27 +1,8 @@
-const ViewAPI = require('./src/ViewAPI').ViewAPI;
-const JobAPI = require('./src/JobAPI').JobAPI;
-const BuildAPI = require('./src/BuildAPI').BuildAPI;
-const request = require('request');
+const ViewAPI = require('./src/ViewAPI');
+const JobAPI = require('./src/JobAPI');
+const BuildAPI = require('./src/BuildAPI');
+const { asyncRequest } = require('./src/utils');
 
-function asyncRequest(options) {
-  return new Promise((resolve, reject) => {
-    request(options, (err, res, body) => {
-      if (err) reject(err)
-      if (res && res.statusCode >= 200 && res.statusCode < 300) {
-        let contentType = res.headers['content-type'];
-        let jsonReg = /application\/json/g;
-        let xmlReg = /text\/html/g;
-        if (jsonReg.test(contentType)) {
-          resolve(JSON.parse(body))
-        } else if(xmlReg.test(contentType)) {
-          resolve(body)
-        }
-      } else {
-        reject(res.statusCode)
-      }
-    })
-  })
-}
 class JenkinsAPI {
   constructor(origin, authorization = {}) {
     this.origin = origin;
@@ -48,5 +29,5 @@ class JenkinsAPI {
   }
 }
 
-exports.JenkinsAPI = JenkinsAPI;
+module.exports = JenkinsAPI;
 

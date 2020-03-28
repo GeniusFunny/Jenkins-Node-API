@@ -33,6 +33,4 @@ class ViewAPI{
   }
 }
 
-module.exports = {
-  ViewAPI
-}
+module.exports = ViewAPI

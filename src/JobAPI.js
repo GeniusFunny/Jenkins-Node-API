@@ -45,6 +45,4 @@ class JobAPI {
   }
 }
 
-module.exports = {
-  JobAPI
-}
+module.exports = JobAPI

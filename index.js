@@ -15,19 +15,21 @@ class JenkinsAPI {
     this.buildAPI.setBasePath(view, job)
   }
   async request(info) {
+    info.url = `${this.origin}${info.path}`;
+    info.auth = this.authorization;
+    delete info.path;
+    let res = null;
     try {
-      let res = await asyncRequest({
-        url: `${this.origin}${info.path}`,
-        method: info.method || 'GET',
-        auth: this.authorization,
-      })
-      return res;
+      res = await asyncRequest(info);
     } catch(e) {
       // TCP链接失败等错误、404等
-      console.log(e)
+      res = {
+        status: 'failed',
+        message: e
+      }
     }
+    return res
   }
 }
 
 module.exports = JenkinsAPI;
-

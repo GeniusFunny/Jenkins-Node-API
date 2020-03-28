@@ -1,8 +1,11 @@
-class ViewAPI{
-  create(name = '') {
+class ViewAPI {
+  create(data) {
+    data.json = JSON.stringify(data);
+    data.mode = data.mode || 'hudson.model.ListView';
     return {
-      path: `/createView/name=${name}`,
-      method: 'POST'
+      path: `/createView/api/json`,
+      method: 'POST',
+      form: data
     }
   }
   delete(name) {
@@ -19,16 +22,19 @@ class ViewAPI{
   }
   getConfig(name) {
     return {
-      path: `/view/${name}/config.xml`,
+      path: `/view/${name}/config.xml/api/json`,
       method: 'GET',
-      contentType: 'XML'
     }
   }
-  updateConfig() {
+  // Todo: 解决xml解析问题
+  updateConfig(name, data = {}) {
+    data.json = JSON.stringify(data);
+    console.log(data)
     return {
-      path: `/view/${name}/config.xml`,
+      path: `/view/${name}/configSubmit`,
       method: 'POST',
-      contentType: 'XML'
+      contentType: 'application/x-www-form-urlencoded',
+      form: data
     }
   }
 }

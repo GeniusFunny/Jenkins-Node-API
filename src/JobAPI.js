@@ -1,46 +1,53 @@
+const { Builder } = require('xml2js');
+let builder = new Builder();
 class JobAPI {
-  create(name = '') {
-    return {
-      path: `/createItem/name=${name}`,
-      method: 'POST'
-    }
-  }
-  delete(name) {
-    return {
-      path: `/job/${name}/doDelete`,
-      method: 'POST'
-    }
-  }
   getInfo(name) {
     return {
       path: `/job/${name}/api/json`,
       method: 'GET'
     }
   }
+  // Todo: XML解析问题
+  create(name, data) {
+    return {
+      path: `/createItem/api/json`,
+      method: 'POST',
+      contentType: 'application/xml',
+      body: builder.buildObject(data),
+      name: name
+    }
+  }
+  delete(name) {
+    return {
+      path: `/job/${name}/doDelete/api/json`,
+      method: 'POST'
+    }
+  }
   enable(name) {
     return {
       path: `/job/${name}/enable`,
-      method: 'GET'
+      method: 'POST'
     }
   }
   disable(name) {
     return {
       path: `/job/${name}/disable`,
-      method: 'GET'
+      method: 'POST'
     }
   }
   getConfig(name) {
     return {
-      path: `/job/${name}/config.xml`,
-      method: 'GET',
-      contentType: 'XML'
+      path: `/job/${name}/config.xml/api/json`,
+      method: 'GET'
     }
   }
-  updateConfig(name) {
+    // Todo: XML解析问题
+  updateConfig(name, data) {
     return {
-      path: `/job/${name}/config.xml`,
+      path: `/job/${name}/config.xml/api/json`,
       method: 'POST',
-      contentType: 'XML'
+      contentType: 'application/xml',
+      body: builder.buildObject(data),
     }
   }
 }

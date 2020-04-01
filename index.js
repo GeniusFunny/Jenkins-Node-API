@@ -1,6 +1,8 @@
 const ViewAPI = require('./src/ViewAPI');
 const JobAPI = require('./src/JobAPI');
 const BuildAPI = require('./src/BuildAPI');
+const PluginAPI = require('./src/PluginAPI');
+const QueueAPI = require('./src/QueueAPI');
 const { asyncRequest } = require('./src/utils');
 
 class JenkinsAPI {
@@ -10,9 +12,16 @@ class JenkinsAPI {
     this.jobAPI = new JobAPI();
     this.viewAPI = new ViewAPI();
     this.buildAPI = new BuildAPI();
+    this.pluginAPI = new PluginAPI();
+    this.queueAPI = new QueueAPI();
   }
   setBuildInfo(view, job) {
     this.buildAPI.setBasePath(view, job)
+  }
+  list() {
+    return {
+      path: '/api/json'
+    }
   }
   async request(info) {
     info.url = `${this.origin}${info.path}`;
@@ -21,7 +30,7 @@ class JenkinsAPI {
     let res = null;
     try {
       res = await asyncRequest(info);
-    } catch(e) {
+    } catch (e) {
       // TCP链接失败等错误、404等
       res = {
         status: 'failed',

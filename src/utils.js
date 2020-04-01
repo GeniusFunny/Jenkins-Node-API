@@ -10,7 +10,7 @@ function isJSON(contentTyoe) {
   return reg.test(contentTyoe);
 }
 
-const successStatusCode = [200, 302];
+const successStatusCode = [200, 302, 201];
 const failedStatusCode = [400, 401, 404, 500];
 
 function asyncRequest(options) {
@@ -21,9 +21,8 @@ function asyncRequest(options) {
     form: null,
     body: null
   }, options);
-
+  // console.log(options)
   return new Promise((resolve, reject) => {
-    console.log(options)
     request(requestOptions, function (error, response, body) {
       if (error) {
         reject(error);
@@ -40,7 +39,7 @@ function asyncRequest(options) {
             .catch(err => reject(err))
         } else if (response.statusCode === 302){
           resolve({
-            statusCode: 302,
+            statusCode: response.statusCode,
             location: response.location
           })
         } else {

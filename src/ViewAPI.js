@@ -26,7 +26,6 @@ class ViewAPI {
       method: 'GET',
     }
   }
-  // Todo: 解决xml解析问题
   updateConfig(name, data = {}) {
     data.json = JSON.stringify(data);
     console.log(data)

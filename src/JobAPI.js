@@ -7,7 +7,6 @@ class JobAPI {
       method: 'GET'
     }
   }
-  // Todo: XML解析问题
   create(name, data) {
     return {
       path: `/createItem/api/json`,
@@ -41,7 +40,6 @@ class JobAPI {
       method: 'GET'
     }
   }
-    // Todo: XML解析问题
   updateConfig(name, data) {
     return {
       path: `/job/${name}/config.xml/api/json`,

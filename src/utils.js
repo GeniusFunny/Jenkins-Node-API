@@ -1,6 +1,8 @@
 const request = require('request');
 const { Parser } = require('xml2js');
-let parser = new Parser();
+let parser = new Parser({
+  explicitArray: false
+});
 function isXml(contentTyoe) {
   let reg = /xml/g;
   return reg.test(contentTyoe);
@@ -12,6 +14,7 @@ function isJSON(contentTyoe) {
 
 const successStatusCode = [200, 302, 201];
 const failedStatusCode = [400, 401, 404, 500];
+
 
 function asyncRequest(options) {
   const requestOptions = Object.assign({

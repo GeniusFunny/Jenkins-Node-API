@@ -15,9 +15,6 @@ class JenkinsAPI {
     this.pluginAPI = new PluginAPI();
     this.queueAPI = new QueueAPI();
   }
-  setBuildInfo(view, job) {
-    this.buildAPI.setBasePath(view, job)
-  }
   list() {
     return {
       path: '/api/json'

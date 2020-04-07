@@ -24,7 +24,6 @@ function asyncRequest(options) {
     form: null,
     body: null
   }, options);
-  // console.log(options)
   return new Promise((resolve, reject) => {
     request(requestOptions, function (error, response, body) {
       if (error) {

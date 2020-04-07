@@ -3,44 +3,44 @@ class BuildAPI {
   buildWithParams(view, job, data) {
     data.json = JSON.stringify(data)
     return {
-      path: `view/${view}/job/${job}/build`,
+      path: `/view/${view}/job/${job}/build`,
       method: 'POST',
       form: data
     }
   }
-  build() {
+  build(view, job) {
     return {
-      path: `view/${view}/job/${job}/build`,
+      path: `/view/${view}/job/${job}/build`,
       method: 'POST'
     }
   }
-  stop(id) {
+  stop(view, job, id) {
     return {
-      path: `view/${view}/job/${job}/${id}/stop`,
+      path: `/view/${view}/job/${job}/${id}/stop`,
       method: 'POST'
     }
   }
-  delete(id) {
+  delete(view, job, id) {
     return {
-      path: `view/${view}/job/${job}/${id}/doDelete`,
+      path: `/view/${view}/job/${job}/${id}/doDelete`,
       method: 'POST'
     }
   }
-  getInfo(id) {
+  getInfo(view, job, id) {
     return {
-      path: `view/${view}/job/${job}/${id}/api/json`,
+      path: `/view/${view}/job/${job}/${id}/api/json`,
       method: 'GET'
     }
   }
-  last() {
+  last(view, job) {
     return {
-      path: `view/${view}/job/${job}/lastBuild/api/json`,
+      path: `/view/${view}/job/${job}/lastBuild/api/json`,
       method: 'GET'
     }
   }
-  lastSuccessfulBuild() {
+  lastSuccessfulBuild(view, job) {
     return {
-      path: `view/${view}/job/${job}/lastSuccessfulBuild/api/json`,
+      path: `/view/${view}/job/${job}/lastSuccessfulBuild/api/json`,
       method: 'GET'
     }
   }

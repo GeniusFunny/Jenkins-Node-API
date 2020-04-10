@@ -1,5 +1,8 @@
-const { Builder } = require('xml2js');
+const { Builder, Parser } = require('xml2js');
 let builder = new Builder();
+let parser = new Parser({
+  explicitArray: false
+})
 class JobAPI {
   getInfo(name) {
     return {
@@ -7,13 +10,18 @@ class JobAPI {
       method: 'GET'
     }
   }
-  create(name, data) {
+  create(name, description) {
     return {
-      path: `/createItem/api/json`,
+      path: `/createItem?name=${name}`,
       method: 'POST',
-      contentType: 'application/xml',
-      body: builder.buildObject(data),
-      name: name
+      body: builder.buildObject({
+        project: {
+          description,
+        }
+      }),
+      headers: {
+        'Content-Type': 'text/xml'
+      }
     }
   }
   delete(name) {
@@ -44,7 +52,6 @@ class JobAPI {
     return {
       path: `/job/${name}/config.xml/api/json`,
       method: 'POST',
-      contentType: 'application/xml',
       body: builder.buildObject(data),
     }
   }

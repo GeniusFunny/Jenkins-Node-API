@@ -28,7 +28,6 @@ class ViewAPI {
   }
   updateConfig(name, data = {}) {
     data.json = JSON.stringify(data);
-    console.log(data)
     return {
       path: `/view/${name}/configSubmit`,
       method: 'POST',

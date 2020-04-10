@@ -1,6 +1,6 @@
 {
   "name": "jenkins-node-api",
-  "version": "0.4.3",
+  "version": "0.5.0",
   "description": "jenkins",
   "main": "index.js",
   "directories": {

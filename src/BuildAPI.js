@@ -44,6 +44,12 @@ class BuildAPI {
       method: 'GET'
     }
   }
+  log(view, job, id) {
+    return {
+      path: `/view/${view}/job/${job}/${id}/consoleText/api/json`,
+      method: 'GET'
+    }
+  }
 }
 
 module.exports = BuildAPI;

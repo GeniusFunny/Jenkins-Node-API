@@ -46,7 +46,8 @@ function asyncRequest(options) {
           })
         } else {
           resolve({
-            statusCode: response.statusCode
+            statusCode: response.statusCode,
+            body: response.body
           })
         }
       }
